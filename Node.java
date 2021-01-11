@@ -23,5 +23,13 @@ public class Node {
      data = newvalue;
    }
 
+   public void setNext(Node newnext) {
+     next = newnext;
+  }
+
+  public void setPrev(Node newprev) {
+    prev = newprev;
+  }
+
 
 }
