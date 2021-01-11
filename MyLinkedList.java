@@ -12,29 +12,29 @@ public class MyLinkedList {
   }
 
   private Node getNthNode(int n) {
-    Node current = this.start;
-    if ((n<0)||(n > this.size)) {
+    Node current = start;
+    if (n < 0 || n > this.size) {
       throw new IndexOutOfBoundsException("Index out of bounds");
     }
-    for (int i = 0; i < n; i ++) {
+    for (int i = 0; i < n; i++) {
       current = current.getNext();
       }
    return current;
   }
 
   public boolean add(String value) {
-    if (this.size == 0) {
-      this.start = new Node(value);
-      this.end = this.start;
-      this.size = 1;
+    if (size == 0) {
+      start = new Node(value);
+      end = start;
+      size = 1;
       return true;
     }
     else {
       Node newnode = new Node(value);
-      this.end.setNext(newnode);
-      newnode.setPrev(this.end);
-      this.end = newnode;
-      this.size ++;
+      end.setNext(newnode);
+      newnode.setPrev(end);
+      end = newnode;
+      size++;
       return true;
     }
   }
@@ -42,33 +42,30 @@ public class MyLinkedList {
   public void add(int index, String value) {
      Node newnode = new Node(value);
      // EMPTY:
-    if (this.size == 0) {
-      this.start = newnode;
-      this.end = this.start;
-      this.size = 1;
+    if (size == 0) {
+      start = newnode;
+      end = start;
+      size = 1;
     }
-    // START:
    else if (index == 0) {
-     newnode.setNext(this.start);
-     this.start.setPrev(newnode);
-     this.start = newnode;
-     this.size ++;
+     newnode.setNext(start);
+     start.setPrev(newnode);
+     start = newnode;
+     size ++;
    }
-    // END:
-   else if (index == this.size) {
-     this.end.setNext(newnode);
-     newnode.setPrev(this.end);
-     this.end = newnode;
-     this.size ++;
+   else if (index == size) {
+     end.setNext(newnode);
+     newnode.setPrev(end);
+     end = newnode;
+     size ++;
    }
-   // MIDDLE:
    else {
      Node indexnode = getNthNode(index);
      indexnode.getPrev().setNext(newnode);
      newnode.setPrev(indexnode.getPrev());
      newnode.setNext(indexnode);
      indexnode.setPrev(newnode);
-     this.size ++;
+     size++;
    }
   }
 
@@ -83,7 +80,7 @@ public class MyLinkedList {
   }
 
   public String toString() {
-    Node current = this.start;
+    Node current = start;
     String output = "[";
     while (current != null) {
       output += current.getData();
@@ -97,7 +94,7 @@ public class MyLinkedList {
   }
 
   public String toStringReversed() {
-    Node current = this.end;
+    Node current = end;
     String output = "[";
     while (current != null) {
       output += current.getData();
