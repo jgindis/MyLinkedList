@@ -41,7 +41,6 @@ public class MyLinkedList {
 
   public void add(int index, String value) {
      Node newnode = new Node(value);
-     // EMPTY:
     if (size == 0) {
       start = newnode;
       end = start;
@@ -70,10 +69,16 @@ public class MyLinkedList {
   }
 
   public String get(int index){
+    if (index < 0 || index >= size) {
+      throw new IndexOutOfBoundsException();
+    }
     return getNthNode(index).getData();
   }
 
   public String set(int index, String value){
+    if (index < 0 || index >= size) {
+      throw new IndexOutOfBoundsException();
+    }
     Node oldnode = getNthNode(index);
     getNthNode(index).setData(value);
     return oldnode.getData();
